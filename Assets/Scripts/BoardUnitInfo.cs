@@ -8,6 +8,7 @@ public class BoardUnitInfo : MonoBehaviour
     public TMP_Text tmpBoardLabel;
     public GameObject Cub;
 
+    public bool[] shipPlaceable = new bool[5] { true, true, true, true, true };
     public int Row;
     public int Col;
     public bool occupied;
