@@ -21,7 +21,6 @@ public class BoardUIManager : MonoBehaviour
     }
     public void SelectedBoardPiece(int value)
     {
-        Debug.Log($"User selected piece # {value}");
         shipChoice = value;
         switch(value)
         {
@@ -52,6 +51,5 @@ public class BoardUIManager : MonoBehaviour
             orientation = 0;
         else
             orientation++;
-        Debug.Log($"you have selected orientation: {orientation}");
     }
 }

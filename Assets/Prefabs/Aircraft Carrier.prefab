@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6177491664635892785}
   - component: {fileID: 6177491664638792727}
   - component: {fileID: 6177491664637662935}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 6177491664635892787}
   - component: {fileID: 6177491664638792721}
   - component: {fileID: 6177491664637662929}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,9 +176,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6177491664635892789}
   - component: {fileID: 6177491664628218837}
-  m_Layer: 0
+  - component: {fileID: 3213163439237726544}
+  m_Layer: 6
   m_Name: Aircraft Carrier
-  m_TagString: Untagged
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -191,8 +192,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6177491664635463701}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.76, y: 0.6381562, z: -0.11}
-  m_LocalScale: {x: 16.485723, y: 16.485723, z: 16.485723}
+  m_LocalPosition: {x: 0, y: 0, z: 0.3}
+  m_LocalScale: {x: 18, y: 18, z: 18}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6177491664635892791}
@@ -221,6 +222,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &3213163439237726544
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6177491664635463701}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01, y: 0.1, z: 0.25}
+  m_Center: {x: 0, y: 0.02, z: 0.01}
 --- !u!1 &6177491664635463703
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +246,7 @@ GameObject:
   - component: {fileID: 6177491664635892791}
   - component: {fileID: 6177491664638792725}
   - component: {fileID: 6177491664637662933}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

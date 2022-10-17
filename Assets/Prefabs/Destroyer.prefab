@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8892331068105900320}
   - component: {fileID: 8892331068106670338}
   - component: {fileID: 8892331068107670466}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8892331068105900322}
   - component: {fileID: 8892331068106670340}
   - component: {fileID: 8892331068107670468}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 8892331068105900324}
   - component: {fileID: 8892331068106670342}
   - component: {fileID: 8892331068107670470}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,9 +259,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8892331068105900326}
   - component: {fileID: 8892331068096097990}
-  m_Layer: 0
+  - component: {fileID: 8068301358593963522}
+  m_Layer: 6
   m_Name: Destroyer
-  m_TagString: Untagged
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -274,7 +275,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8892331068105481478}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.34743834, y: 0.19625592, z: 0.9236758}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5228977, y: 0.5228977, z: 0.5228977}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -311,6 +312,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &8068301358593963522
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8892331068105481478}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 5.3}
+  m_Center: {x: 0, y: 0, z: -0.05}
 --- !u!1 &8892331068105481480
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,7 +336,7 @@ GameObject:
   - component: {fileID: 8892331068105900328}
   - component: {fileID: 8892331068106670346}
   - component: {fileID: 8892331068107670474}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +419,7 @@ GameObject:
   - component: {fileID: 8892331068105900330}
   - component: {fileID: 8892331068106670348}
   - component: {fileID: 8892331068107670476}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +502,7 @@ GameObject:
   - component: {fileID: 8892331068105900332}
   - component: {fileID: 8892331068106670350}
   - component: {fileID: 8892331068107670478}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -571,7 +585,7 @@ GameObject:
   - component: {fileID: 8892331068105900334}
   - component: {fileID: 8892331068106670336}
   - component: {fileID: 8892331068107670464}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -654,7 +668,7 @@ GameObject:
   - component: {fileID: 8892331068105900338}
   - component: {fileID: 8892331068106670356}
   - component: {fileID: 8892331068107670484}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -737,7 +751,7 @@ GameObject:
   - component: {fileID: 8892331068105900340}
   - component: {fileID: 8892331068106670358}
   - component: {fileID: 8892331068107670486}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -820,7 +834,7 @@ GameObject:
   - component: {fileID: 8892331068105900342}
   - component: {fileID: 8892331068106670344}
   - component: {fileID: 8892331068107670472}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh08
   m_TagString: Untagged
   m_Icon: {fileID: 0}

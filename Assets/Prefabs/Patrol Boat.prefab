@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8213143330407893197}
   - component: {fileID: 8213143330408663279}
   - component: {fileID: 8213143330409794095}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8213143330407893199}
   - component: {fileID: 8213143330408663281}
   - component: {fileID: 8213143330409794097}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 8213143330407893201}
   - component: {fileID: 8213143330408663283}
   - component: {fileID: 8213143330409794099}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 8213143330407893203}
   - component: {fileID: 8213143330408663285}
   - component: {fileID: 8213143330409794101}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 8213143330407893205}
   - component: {fileID: 8213143330408663287}
   - component: {fileID: 8213143330409794103}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 8213143330407893207}
   - component: {fileID: 8213143330408663289}
   - component: {fileID: 8213143330409794105}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 8213143330407893209}
   - component: {fileID: 8213143330408663291}
   - component: {fileID: 8213143330409794107}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -592,7 +592,7 @@ GameObject:
   - component: {fileID: 8213143330407893211}
   - component: {fileID: 8213143330408663293}
   - component: {fileID: 8213143330409794109}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -675,7 +675,7 @@ GameObject:
   - component: {fileID: 8213143330407893213}
   - component: {fileID: 8213143330408663295}
   - component: {fileID: 8213143330409794111}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -757,9 +757,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8213143330407893215}
   - component: {fileID: 8213143330415060799}
-  m_Layer: 0
+  - component: {fileID: 3740416917323927178}
+  m_Layer: 6
   m_Name: Patrol Boat
-  m_TagString: Untagged
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -772,7 +773,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8213143330407798015}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.63, y: 0.19625616, z: 0.57}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.61993, y: 0.61993, z: 0.61993}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -808,3 +809,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &3740416917323927178
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8213143330407798015}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 2.98}
+  m_Center: {x: 0, y: 0.4, z: 0.23}

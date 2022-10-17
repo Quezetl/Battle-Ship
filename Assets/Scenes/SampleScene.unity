@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 188449357}
   - component: {fileID: 188449359}
   - component: {fileID: 188449358}
+  - component: {fileID: 188449360}
   m_Layer: 5
   m_Name: Rotation Button Panel
   m_TagString: Untagged
@@ -200,6 +201,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188449356}
   m_CullTransparentMesh: 1
+--- !u!61 &188449360
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188449356}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &274612213
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,7 +649,7 @@ MonoBehaviour:
   shipArray:
   - {fileID: 8213143330407798015, guid: 5a85f9e0b758377438270015b126313b, type: 3}
   - {fileID: 8892331068105481478, guid: 18ae1c8d1c42c084297ef3472453b43a, type: 3}
-  - {fileID: 6374925791970828338, guid: d364ea1003c866e419ea0c3a16ce38d1, type: 3}
+  - {fileID: 4520954666514174190, guid: 0b5e2f062c9f3a246a6496ecceafeeda, type: 3}
   - {fileID: 8523233589643833619, guid: 182d53990f9eb5d4a94ea61841ca9cbf, type: 3}
   - {fileID: 6177491664635463701, guid: d9589a284ca406e43afb229ca42175a6, type: 3}
   ShipPreview: {fileID: 3769764609673513693, guid: a1a9bedb4c2eeaa48aa2aa61e0c3c681, type: 3}
@@ -983,14 +1010,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.69708, y: -0.00064802583, z: 0.0006326887, w: -0.71699286}
-  m_LocalPosition: {x: 9.047661, y: 13.629193, z: -5.9882646}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 9, y: 13, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1005966815
 GameObject:
   m_ObjectHideFlags: 0

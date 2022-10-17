@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8004576557883874187}
   - component: {fileID: 5890592206516436138}
   - component: {fileID: 7903471548799700153}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Top Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 6652019207592305441}
   - component: {fileID: 7676142134456594838}
   - component: {fileID: 8474488253954077428}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Board Prefab
   m_TagString: Base
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 832408252599197394}
   - component: {fileID: 2265131887679083790}
   - component: {fileID: 4548075273113402018}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Board Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
