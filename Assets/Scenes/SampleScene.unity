@@ -646,6 +646,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577e7ffe29799b24185751e82e848b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 64
   shipArray:
   - {fileID: 8213143330407798015, guid: 5a85f9e0b758377438270015b126313b, type: 3}
   - {fileID: 8892331068105481478, guid: 18ae1c8d1c42c084297ef3472453b43a, type: 3}
@@ -654,6 +657,7 @@ MonoBehaviour:
   - {fileID: 6177491664635463701, guid: d9589a284ca406e43afb229ca42175a6, type: 3}
   ShipPreview: {fileID: 3769764609673513693, guid: a1a9bedb4c2eeaa48aa2aa61e0c3c681, type: 3}
   boardUnityPrefab: {fileID: 3313256307874980592, guid: 50a7041efaf59c741948d44c8dff8ec0, type: 3}
+  previewable: 0000000000
 --- !u!1 &559073529
 GameObject:
   m_ObjectHideFlags: 0
