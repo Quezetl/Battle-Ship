@@ -1589,7 +1589,7 @@ GameObject:
   - component: {fileID: 4520954666521568072}
   - component: {fileID: -9130128873640752575}
   m_Layer: 6
-  m_Name: New Sub
+  m_Name: Submarine
   m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

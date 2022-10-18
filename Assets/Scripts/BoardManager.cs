@@ -45,7 +45,97 @@ public class BoardManager : MonoBehaviour
             previewable[i] = true;
             preview[i].GetComponent<Renderer>().material = previewMat;
         }
+        for(int i = 0; i < 5; i++)
+            aiShipPlacement(i);
+
     }
+
+    void aiShipPlacement(int j)
+    {
+        int aiOrient = (int)Random.Range(0.0f, 4.0f);
+
+        ship[j] = GameObject.Instantiate(this.shipArray[j]);
+        float pos = ship[j].GetComponent<Collider>().bounds.size.z;
+        GameObject cuber = ship[j];
+        int x, z;
+
+        Vector3 coord;
+
+        switch (aiOrient)
+        {
+            case 0:
+                while (true)
+                {
+                    x = (int)Random.Range(11.0f, 21.0f);
+                    z = (int)Random.Range(0f, 10.0f);
+                    if ((j == 0 && x < 8) ||
+                        (j == 1 && x < 7) ||
+                        (j == 2 && x < 7) ||
+                        (j == 3 && x < 6) ||
+                        (j == 4 && x < 5))
+                        break;
+                }
+                coord = new Vector3(x, 0, z);
+                ship[j].transform.Rotate(0, 180.0f, 0);
+                cuber.name = $"Cuber #{j}, for orient {aiOrient}";
+                break;
+            case 1:
+                while (true)
+                {
+                    x = (int)Random.Range(11.0f, 21.0f);
+                    z = (int)Random.Range(0f, 10.0f);
+                    if ((j == 0 && z < 8) ||
+                        (j == 1 && z < 7) ||
+                        (j == 2 && z < 7) ||
+                        (j == 3 && z < 6) ||
+                        (j == 4 && z < 5))
+                        break;
+                }
+                coord = new Vector3(x, 0, z);
+                ship[j].transform.position = new Vector3(x, 0, z);
+                ship[j].transform.Rotate(0, 270.0f, 0);
+                cuber.name = $"Cuber #{j}, for orient {aiOrient}";
+                break;
+            case 2:
+                while (true)
+                {
+                    x = (int)Random.Range(11.0f, 21.0f);
+                    z = (int)Random.Range(0f, 10.0f);
+                    if ((j == 0 && x > 2) ||
+                        (j == 1 && x > 3) ||
+                        (j == 2 && x > 3) ||
+                        (j == 3 && x > 4) ||
+                        (j == 4 && x > 5))
+                        break;
+                }
+                coord = new Vector3(x, 0, z);
+                ship[j].transform.position = new Vector3(x, 0, z);
+                ship[j].transform.Rotate(0, 0.0f, 0);
+                cuber.name = $"Cuber #{j}, for orient {aiOrient}";
+                break;
+            case 3:
+                while (true)
+                {
+                    x = (int)Random.Range(11.0f, 21.0f);
+                    z = (int)Random.Range(0f, 10.0f);
+                    if ((j == 0 && z > 2) ||
+                        (j == 1 && z > 3) ||
+                        (j == 2 && z > 3) ||
+                        (j == 3 && z > 4) ||
+                        (j == 4 && z > 5))
+                        break;
+                }
+                coord = new Vector3(x, 0, z);
+                ship[j].transform.position = new Vector3(x, 0, z);
+                ship[j].transform.Rotate(0, 90.0f, 0);
+                cuber.name = $"Cuber #{j}, for orient {aiOrient}";
+                break;
+            default:
+                break;
+        }
+
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -83,12 +173,8 @@ public class BoardManager : MonoBehaviour
 
                 shipPreview(mousePos);
 
-                //Destroy(tmp);
 
             }
-
-            //else
-                //preview.transform.position = new Vector3(mousePos.point.x, mousePos.point.y + (.1f), mousePos.point.z);
 
 
             if (Input.GetMouseButtonUp(0))
@@ -103,30 +189,7 @@ public class BoardManager : MonoBehaviour
                 {
                     if (hitInfo.transform.tag.Equals("Base"))
                     {
-                        ship[boardUIMana.shipChoice - 1] = GameObject.Instantiate(this.shipArray[boardUIMana.shipChoice - 1]);
-                        float pos = ship[boardUIMana.shipChoice - 1].GetComponent<Collider>().bounds.size.z;
-                        switch (boardUIMana.orientation)
-                        {
-                            case 0:
-                                ship[boardUIMana.shipChoice - 1].transform.position = temp.transform.position + new Vector3(0f, 0f, pos / 2 - .2f);
-                                ship[boardUIMana.shipChoice - 1].transform.Rotate(0, 180.0f, 0);
-                                break;
-                            case 1:
-                                ship[boardUIMana.shipChoice - 1].transform.position = temp.transform.position + new Vector3(pos / 2 - .2f, 0f, 0f);
-                                ship[boardUIMana.shipChoice - 1].transform.Rotate(0, 270.0f, 0);
-                                break;
-                            case 2:
-                                ship[boardUIMana.shipChoice - 1].transform.position = temp.transform.position + new Vector3(0f, 0f, -(pos / 2 - .2f));
-                                ship[boardUIMana.shipChoice - 1].transform.Rotate(0, 0.0f, 0);
-                                break;
-                            case 3:
-                                ship[boardUIMana.shipChoice - 1].transform.position = temp.transform.position + new Vector3(-(pos / 2 - .2f), 0f, 0f);
-                                ship[boardUIMana.shipChoice - 1].transform.Rotate(0, 90.0f, 0);
-                                break;
-                        }
-                        shipInfo.shipPlaceable[boardUIMana.shipChoice - 1] = false;
-                        ShipButtons[boardUIMana.shipChoice - 1].SetActive(false);
-                        Debug.Log($"Ship: {ship[boardUIMana.shipChoice - 1].name} has been placed successfully");
+                        shipPlace();
                     }
                 }
                 
@@ -134,6 +197,64 @@ public class BoardManager : MonoBehaviour
         }
 
 
+    }
+
+    void shipPlace()
+    {
+        GameObject[] shipCarpet = new GameObject[5];
+        Material greenCarpet = Resources.Load("Materials/Green", typeof(Material)) as Material;
+        for (int i = 0; i < 5; i++)
+        {
+            shipCarpet[i] = GameObject.Instantiate(tmp);
+            shipCarpet[i].GetComponent<Renderer>().material = greenCarpet;
+            shipCarpet[i].SetActive(false);
+            shipCarpet[i].name = $"green carpet for ship:{boardUIMana.shipChoice}";
+        }
+            
+        ship[boardUIMana.shipChoice - 1] = GameObject.Instantiate(this.shipArray[boardUIMana.shipChoice - 1]);
+        float pos = ship[boardUIMana.shipChoice - 1].GetComponent<Collider>().bounds.size.z;
+        switch (boardUIMana.orientation)
+        {
+            case 0:
+                ship[boardUIMana.shipChoice - 1].transform.position = temp.transform.position + new Vector3(0f, 0f, pos / 2 - .2f);
+                ship[boardUIMana.shipChoice - 1].transform.Rotate(0, 180.0f, 0);
+                for (int i = 0; i < boardUIMana.shipLength; i++)
+                {
+                    shipCarpet[i].transform.position = tmp.transform.position + new Vector3(0f, 0f, (float)i);
+                    shipCarpet[i].SetActive(true);
+                }
+                break;
+            case 1:
+                ship[boardUIMana.shipChoice - 1].transform.position = temp.transform.position + new Vector3(pos / 2 - .2f, 0f, 0f);
+                ship[boardUIMana.shipChoice - 1].transform.Rotate(0, 270.0f, 0);
+                for (int i = 0; i < boardUIMana.shipLength; i++)
+                {
+                    shipCarpet[i].transform.position = tmp.transform.position + new Vector3((float)i, 0f, 0);
+                    shipCarpet[i].SetActive(true);
+                }
+                break;
+            case 2:
+                ship[boardUIMana.shipChoice - 1].transform.position = temp.transform.position + new Vector3(0f, 0f, -(pos / 2 - .2f));
+                ship[boardUIMana.shipChoice - 1].transform.Rotate(0, 0.0f, 0);
+                for (int i = 0; i < boardUIMana.shipLength; i++)
+                {
+                    shipCarpet[i].transform.position = tmp.transform.position + new Vector3(0f, 0f, -(float)i);
+                    shipCarpet[i].SetActive(true);
+                }
+                break;
+            case 3:
+                ship[boardUIMana.shipChoice - 1].transform.position = temp.transform.position + new Vector3(-(pos / 2 - .2f), 0f, 0f);
+                ship[boardUIMana.shipChoice - 1].transform.Rotate(0, 90.0f, 0);
+                for (int i = 0; i < boardUIMana.shipLength; i++)
+                {
+                    shipCarpet[i].transform.position = tmp.transform.position + new Vector3(-(float)i, 0f, 0f);
+                    shipCarpet[i].SetActive(true);
+                }
+                break;
+        }
+        shipInfo.shipPlaceable[boardUIMana.shipChoice - 1] = false;
+        ShipButtons[boardUIMana.shipChoice - 1].SetActive(false);
+        Debug.Log($"Ship: {ship[boardUIMana.shipChoice - 1].name} has been placed successfully");
     }
 
     void BoardInit(int plyr, int opp)
@@ -146,7 +267,7 @@ public class BoardManager : MonoBehaviour
             for (int j = 0; j < 10; j++)
             {
                 string objname = $"B{plyr}: ({col - 1},{row - 1})";
-                string textname = $"B{plyr}: ({col},{row})";
+                string textname = $"B{plyr}: ({row},{col})";
                 tmp = GameObject.Instantiate(this.boardUnityPrefab, new Vector3(opp + i, 0, j), this.boardUnityPrefab.transform.rotation) as GameObject;
                 tmp.GetComponentInChildren<TMPro.TextMeshProUGUI>(tmp).text = textname;
                 tmp.name = objname;
@@ -163,12 +284,16 @@ public class BoardManager : MonoBehaviour
         {
             if (Physics.CheckBox(preview[i].transform.position, preview[i].transform.localScale / 2, Quaternion.identity, layer))
             {
-                preview[i].GetComponent<Renderer>().material = Resources.Load("Materials/Green", typeof(Material)) as Material;
+                preview[i].GetComponent<Renderer>().material = Resources.Load("Materials/Yellow", typeof(Material)) as Material;
                 previewable[i] = false;
             }
             else
             {
                 preview[i].GetComponent<Renderer>().material = Resources.Load("Materials/Grey", typeof(Material)) as Material;
+                previewable[i] = true;
+            }
+            if (preview[i].active == false)
+            {
                 previewable[i] = true;
             }
         }
