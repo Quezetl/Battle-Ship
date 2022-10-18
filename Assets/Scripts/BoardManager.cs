@@ -23,6 +23,8 @@ public class BoardManager : MonoBehaviour
     public GameObject boardUnityPrefab;
     public bool[] previewable = new bool[5];
 
+    public GameObject[] ShipButtons = new GameObject[5];
+
 
 
     // Start is called before the first frame update
@@ -93,7 +95,6 @@ public class BoardManager : MonoBehaviour
             {
                 if (!shipInfo.shipPlaceable[boardUIMana.shipChoice - 1])
                     return;
-                ship[boardUIMana.shipChoice-1] = GameObject.Instantiate(this.shipArray[boardUIMana.shipChoice-1]);
                 bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hitInfo);
                 for (int i = 0; i < 5; i++)
                     if (!previewable[i])
@@ -102,6 +103,7 @@ public class BoardManager : MonoBehaviour
                 {
                     if (hitInfo.transform.tag.Equals("Base"))
                     {
+                        ship[boardUIMana.shipChoice - 1] = GameObject.Instantiate(this.shipArray[boardUIMana.shipChoice - 1]);
                         float pos = ship[boardUIMana.shipChoice - 1].GetComponent<Collider>().bounds.size.z;
                         switch (boardUIMana.orientation)
                         {
@@ -123,7 +125,8 @@ public class BoardManager : MonoBehaviour
                                 break;
                         }
                         shipInfo.shipPlaceable[boardUIMana.shipChoice - 1] = false;
-
+                        ShipButtons[boardUIMana.shipChoice - 1].SetActive(false);
+                        Debug.Log($"Ship: {ship[boardUIMana.shipChoice - 1].name} has been placed successfully");
                     }
                 }
                 
@@ -379,5 +382,5 @@ public class BoardManager : MonoBehaviour
         return true;
     }
     public void ShipButtoncalled(int value) { boardUIMana.SelectedBoardPiece(value); }
-    public void OrientaionChange() { boardUIMana.ChangeOrientation(); }
+    public void OrientaionChange() { boardUIMana.ChangeOrientation();}
 }
