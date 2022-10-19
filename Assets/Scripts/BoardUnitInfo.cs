@@ -20,16 +20,15 @@ public class BoardUnitInfo : MonoBehaviour
         {
             case 0:
                 return 2;
-                break;
-                case 1:
+            case 1:
                 return 3;
-                case 2:
+            case 2:
                 return 3;
             case 3:
                 return 4;
-                case 4:
+            case 4:
                 return 5;
-                default:
+            default:
                 return 0;
         }
     }

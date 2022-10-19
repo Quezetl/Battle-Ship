@@ -45,95 +45,151 @@ public class BoardManager : MonoBehaviour
             previewable[i] = true;
             preview[i].GetComponent<Renderer>().material = previewMat;
         }
-        for(int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++)
+        {
             aiShipPlacement(i);
+        }
 
     }
+
 
     void aiShipPlacement(int j)
     {
         int aiOrient = (int)Random.Range(0.0f, 4.0f);
-
+        bool place = true;
         ship[j] = GameObject.Instantiate(this.shipArray[j]);
         float pos = ship[j].GetComponent<Collider>().bounds.size.z;
-        GameObject cuber = ship[j];
+        float posX = ship[j].GetComponent<Collider>().bounds.size.x;
+        float posY = ship[j].GetComponent<Collider>().bounds.size.y;
+        Vector3 shipbound = new Vector3(posX, posY, pos);
+        GameObject shiptemp = ship[j];
+        shiptemp.GetComponent<Collider>().enabled = false;
         int x, z;
+        int count = 0;
 
-        Vector3 coord;
-
-        switch (aiOrient)
+        switch(aiOrient)
         {
             case 0:
-                while (true)
+                do
                 {
-                    x = (int)Random.Range(11.0f, 21.0f);
-                    z = (int)Random.Range(0f, 10.0f);
-                    if ((j == 0 && x < 8) ||
-                        (j == 1 && x < 7) ||
-                        (j == 2 && x < 7) ||
-                        (j == 3 && x < 6) ||
-                        (j == 4 && x < 5))
+                    x = (int)Random.Range(11.0f, 20.0f);
+                    z = (int)Random.Range(0.0f, 9.0f);
+                    if (pos + z > 9.0f)
+                        place = false;
+                    else
+                        place = true;
+
+                    Debug.Log($"ship {j} with coord:{x}, {z}");
+
+                    shiptemp.transform.position = new Vector3(x, 0, z) + new Vector3(0f, 0f, pos / 2 - .2f);
+
+                    shiptemp.name = $"Ship #{j} with coord:{x}, {z}, with coord:{x}, {z}";
+                    if(count == 0)
+                        shiptemp.transform.Rotate(0, 180.0f, 0);
+
+
+                    if (Physics.CheckBox(shiptemp.transform.position, shipbound / 2, Quaternion.identity, layer))
+                    {
+                        place = false;
+                        Debug.Log("Collider working");
+                    }
+                    count++;
+                    if (count > 100)
                         break;
-                }
-                coord = new Vector3(x, 0, z);
-                ship[j].transform.Rotate(0, 180.0f, 0);
-                cuber.name = $"Cuber #{j}, for orient {aiOrient}";
+
+                } while (!place);
                 break;
             case 1:
-                while (true)
+                do
                 {
-                    x = (int)Random.Range(11.0f, 21.0f);
-                    z = (int)Random.Range(0f, 10.0f);
-                    if ((j == 0 && z < 8) ||
-                        (j == 1 && z < 7) ||
-                        (j == 2 && z < 7) ||
-                        (j == 3 && z < 6) ||
-                        (j == 4 && z < 5))
+                    x = (int)Random.Range(11.0f, 20.0f);
+                    z = (int)Random.Range(0.0f, 9.0f);
+                    if (pos + x > 20.0f)
+                        place = false;
+                    else
+                        place = true;
+
+                    Debug.Log($"ship {j} with coord:{x}, {z}");
+                    shiptemp.transform.position = new Vector3(x, 0, z) + new Vector3(pos / 2 - .2f, 0f, 0f);
+                    shiptemp.name = $"Ship #{j} with coord:{x}, {z}, with coord:{x}, {z}";
+                    if (count == 0)
+                        shiptemp.transform.Rotate(0, 270.0f, 0);
+
+                    bool physCheck = Physics.CheckBox(shiptemp.transform.position, shipbound / 2, Quaternion.identity, layer);
+                    bool valCheck = place;
+                    if (physCheck)
+                    {
+                        place = false;
+                        Debug.Log("Collider working");
+                    }
+
+
+                    count++;
+                    if (count > 100)
                         break;
-                }
-                coord = new Vector3(x, 0, z);
-                ship[j].transform.position = new Vector3(x, 0, z);
-                ship[j].transform.Rotate(0, 270.0f, 0);
-                cuber.name = $"Cuber #{j}, for orient {aiOrient}";
+                } while (!place);
                 break;
             case 2:
-                while (true)
+                do
                 {
-                    x = (int)Random.Range(11.0f, 21.0f);
-                    z = (int)Random.Range(0f, 10.0f);
-                    if ((j == 0 && x > 2) ||
-                        (j == 1 && x > 3) ||
-                        (j == 2 && x > 3) ||
-                        (j == 3 && x > 4) ||
-                        (j == 4 && x > 5))
+                    x = (int)Random.Range(11.0f, 20.0f);
+                    z = (int)Random.Range(0.0f, 9.0f);
+                    if (z - pos < 0.0f)
+                        place = false;
+                    else
+                        place = true;
+
+                    Debug.Log($"ship {j} with coord:{x}, {z}");
+
+                    shiptemp.transform.position = new Vector3(x, 0, z) + new Vector3(0f, 0f, -(pos / 2 - .2f));
+                    shiptemp.name = $"Ship #{j} with coord:{x}, {z}, with coord:{x}, {z}";
+                    if (count == 0)
+                        shiptemp.transform.Rotate(0, 0.0f, 0);
+
+                    if (Physics.CheckBox(shiptemp.transform.position, shipbound / 2, Quaternion.identity, layer))
+                    {
+                        place = false;
+                        Debug.Log("Collider working");
+                    }
+
+                    count++;
+                    if (count > 100)
                         break;
-                }
-                coord = new Vector3(x, 0, z);
-                ship[j].transform.position = new Vector3(x, 0, z);
-                ship[j].transform.Rotate(0, 0.0f, 0);
-                cuber.name = $"Cuber #{j}, for orient {aiOrient}";
+
+                } while (!place);
                 break;
             case 3:
-                while (true)
+                do
                 {
-                    x = (int)Random.Range(11.0f, 21.0f);
-                    z = (int)Random.Range(0f, 10.0f);
-                    if ((j == 0 && z > 2) ||
-                        (j == 1 && z > 3) ||
-                        (j == 2 && z > 3) ||
-                        (j == 3 && z > 4) ||
-                        (j == 4 && z > 5))
+                    x = (int)Random.Range(11.0f, 20.0f);
+                    z = (int)Random.Range(0.0f, 9.0f);
+                    if (x - pos < 11.0f)
+                        place = false;
+                    else
+                        place = true;
+
+                    Debug.Log($"ship {j} with coord:{x}, {z}");
+                    shiptemp.transform.position = new Vector3(x, 0, z) + new Vector3(-(pos / 2 - .2f), 0f, 0f);
+                    shiptemp.name = $"Ship #{j} with coord:{x}, {z}, with coord:{x}, {z}";
+                    if (count == 0)
+                        shiptemp.transform.Rotate(0, 90.0f, 0);
+
+                    if (Physics.CheckBox(shiptemp.transform.position, shipbound / 2, Quaternion.identity, layer))
+                    {
+                        place = false;
+                        Debug.Log("Collider working");
+                    }
+
+                    count++;
+                    if (count > 100)
                         break;
-                }
-                coord = new Vector3(x, 0, z);
-                ship[j].transform.position = new Vector3(x, 0, z);
-                ship[j].transform.Rotate(0, 90.0f, 0);
-                cuber.name = $"Cuber #{j}, for orient {aiOrient}";
-                break;
-            default:
+
+                } while (!place);
                 break;
         }
 
+        Debug.Log($"ship: {shiptemp.name}. pos = {pos}. Orientation = {aiOrient}. counter: {count}");
+        shiptemp.GetComponent<Collider>().enabled = true;
     }
 
 
@@ -298,21 +354,6 @@ public class BoardManager : MonoBehaviour
             }
         }
 
-        /*int i = 0;
-        Collider[] hitColliders = Physics.OverlapBox(preview[1].transform.position, transform.localScale / 2, Quaternion.identity, 6);
-        //Check when there is a new collider coming into contact with the box
-        while (i < hitColliders.Length)
-        {
-            //Output all of the collider names
-            Debug.Log("Hit : " + hitColliders[i].name + i);
-            //Increase the number of Colliders in the array
-            i++;
-        }
-
-        while(hitColliders.Length > 0)
-        {
-            Debug.Log($"Hit: {hitColliders[0].name}");
-        }*/
 
         switch (boardUIMana.shipChoice)
         {
