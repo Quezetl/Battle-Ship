@@ -34,8 +34,8 @@ public class BoardManager : MonoBehaviour
         {
             preview[i] = GameObject.Instantiate(this.ShipPreview);
         }
-        BoardInit(0, 0);
-        BoardInit(1, 11);
+        BoardInit(0, 0, 1);
+        BoardInit(1, 11, 2);
         tmp = GameObject.CreatePrimitive(PrimitiveType.Cube);
         tmp.GetComponent<Collider>().enabled = false;
         previewMat = Resources.Load("Materials/Grey", typeof(Material)) as Material;
@@ -313,7 +313,7 @@ public class BoardManager : MonoBehaviour
         Debug.Log($"Ship: {ship[boardUIMana.shipChoice - 1].name} has been placed successfully");
     }
 
-    void BoardInit(int plyr, int opp)
+    void BoardInit(int plyr, int opp, int pcBoard)
     {
         GameObject tmp;
         int row = 1;
@@ -328,6 +328,11 @@ public class BoardManager : MonoBehaviour
                 tmp.GetComponentInChildren<TMPro.TextMeshProUGUI>(tmp).text = textname;
                 tmp.name = objname;
                 row++;
+                if (pcBoard == 2)
+                    tmp.transform.tag = "aiBase";
+                else
+                    tmp.transform.tag = "Base";
+
             }
             col++;
             row = 1;

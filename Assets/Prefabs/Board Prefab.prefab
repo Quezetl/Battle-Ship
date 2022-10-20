@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 8474488253954077428}
   m_Layer: 3
   m_Name: Board Prefab
-  m_TagString: Base
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
