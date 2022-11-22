@@ -176,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6177491664635892789}
   - component: {fileID: 6177491664628218837}
-  - component: {fileID: 3213163439237726544}
+  - component: {fileID: 7791126640433386571}
   m_Layer: 6
   m_Name: Aircraft Carrier
   m_TagString: Ship
@@ -191,8 +191,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6177491664635463701}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.3}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.8, y: 0, z: 5}
   m_LocalScale: {x: 18, y: 18, z: 18}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -222,19 +222,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &3213163439237726544
-BoxCollider:
+--- !u!64 &7791126640433386571
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6177491664635463701}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.03, y: 0.06, z: 0.25}
-  m_Center: {x: 0, y: 0.03, z: 0.01}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: b78d71fc2b0723c418dee0b99aa41db7, type: 3}
 --- !u!1 &6177491664635463703
 GameObject:
   m_ObjectHideFlags: 0

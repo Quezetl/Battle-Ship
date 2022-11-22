@@ -612,6 +612,8 @@ GameObject:
   m_Component:
   - component: {fileID: 512572275}
   - component: {fileID: 512572276}
+  - component: {fileID: 512572278}
+  - component: {fileID: 512572277}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -641,7 +643,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 512572274}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 577e7ffe29799b24185751e82e848b82, type: 3}
   m_Name: 
@@ -650,13 +652,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   shipArray:
-  - {fileID: 8213143330407798015, guid: 5a85f9e0b758377438270015b126313b, type: 3}
-  - {fileID: 8892331068105481478, guid: 18ae1c8d1c42c084297ef3472453b43a, type: 3}
-  - {fileID: 4520954666514174190, guid: 0b5e2f062c9f3a246a6496ecceafeeda, type: 3}
-  - {fileID: 8523233589643833619, guid: 182d53990f9eb5d4a94ea61841ca9cbf, type: 3}
-  - {fileID: 6177491664635463701, guid: d9589a284ca406e43afb229ca42175a6, type: 3}
+  - {fileID: 8213143330407798015, guid: 29119aa8f65f75943bc2b48599b896d2, type: 3}
+  - {fileID: 8892331068105481478, guid: aff5c0159049ac049baf37f98332490e, type: 3}
+  - {fileID: 4520954666514174190, guid: 89d29f321bc98924a939b8c4d5b1f6ac, type: 3}
+  - {fileID: 8523233589643833619, guid: 42ab0ac0166479c458bf1e1d8adea5c0, type: 3}
+  - {fileID: 6177491664635463701, guid: 06513f428bf1414448b77ce57ed263fa, type: 3}
   ShipPreview: {fileID: 3769764609673513693, guid: a1a9bedb4c2eeaa48aa2aa61e0c3c681, type: 3}
-  boardUnityPrefab: {fileID: 3313256307874980592, guid: 50a7041efaf59c741948d44c8dff8ec0, type: 3}
   previewable: 0000000000
   ShipButtons:
   - {fileID: 559073529}
@@ -664,6 +665,47 @@ MonoBehaviour:
   - {fileID: 1515014487}
   - {fileID: 1655584671}
   - {fileID: 1110514964}
+--- !u!114 &512572277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512572274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53f7205455d64e04d9862848e5409dbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aiShips:
+  - {fileID: 8213143330407798015, guid: 29119aa8f65f75943bc2b48599b896d2, type: 3}
+  - {fileID: 8892331068105481478, guid: aff5c0159049ac049baf37f98332490e, type: 3}
+  - {fileID: 4520954666514174190, guid: 89d29f321bc98924a939b8c4d5b1f6ac, type: 3}
+  - {fileID: 8523233589643833619, guid: 42ab0ac0166479c458bf1e1d8adea5c0, type: 3}
+  - {fileID: 6177491664635463701, guid: 06513f428bf1414448b77ce57ed263fa, type: 3}
+  boardPrefab: {fileID: 3313256307874980592, guid: 50a7041efaf59c741948d44c8dff8ec0, type: 3}
+--- !u!114 &512572278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512572274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 679c4438dfd0b0846bbe8afea424b3ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameManager: {fileID: 512572274}
+  boardPrefab: {fileID: 3313256307874980592, guid: 50a7041efaf59c741948d44c8dff8ec0, type: 3}
+  playerShips:
+  - {fileID: 8213143330407798015, guid: 29119aa8f65f75943bc2b48599b896d2, type: 3}
+  - {fileID: 8892331068105481478, guid: aff5c0159049ac049baf37f98332490e, type: 3}
+  - {fileID: 4520954666514174190, guid: 89d29f321bc98924a939b8c4d5b1f6ac, type: 3}
+  - {fileID: 8523233589643833619, guid: 42ab0ac0166479c458bf1e1d8adea5c0, type: 3}
+  - {fileID: 6177491664635463701, guid: 06513f428bf1414448b77ce57ed263fa, type: 3}
+  shipPreviewPrefab: {fileID: 3769764609673513693, guid: a1a9bedb4c2eeaa48aa2aa61e0c3c681, type: 3}
+  mouseHighlighter: {fileID: 3970447229493964215, guid: 6a078c62b0c9d114a9b045b502ed0310, type: 3}
 --- !u!1 &559073529
 GameObject:
   m_ObjectHideFlags: 0
@@ -2251,3 +2293,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889862661}
   m_CullTransparentMesh: 1
+--- !u!1 &2096807144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2096807146}
+  - component: {fileID: 2096807145}
+  m_Layer: 0
+  m_Name: GameInit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &2096807145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096807144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53f7205455d64e04d9862848e5409dbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aiShips:
+  - {fileID: 8213143330407798015, guid: 29119aa8f65f75943bc2b48599b896d2, type: 3}
+  - {fileID: 8892331068105481478, guid: aff5c0159049ac049baf37f98332490e, type: 3}
+  - {fileID: 4520954666514174190, guid: 89d29f321bc98924a939b8c4d5b1f6ac, type: 3}
+  - {fileID: 8523233589643833619, guid: 42ab0ac0166479c458bf1e1d8adea5c0, type: 3}
+  - {fileID: 6177491664635463701, guid: 06513f428bf1414448b77ce57ed263fa, type: 3}
+  boardPrefab: {fileID: 0}
+--- !u!4 &2096807146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096807144}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.14776537, y: -0.16980705, z: 4.3305535}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

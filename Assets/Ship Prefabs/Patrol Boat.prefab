@@ -757,7 +757,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8213143330407893215}
   - component: {fileID: 8213143330415060799}
-  - component: {fileID: 3740416917323927178}
+  - component: {fileID: 1893585959944042841}
   m_Layer: 6
   m_Name: Patrol Boat
   m_TagString: Ship
@@ -772,8 +772,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8213143330407798015}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: -1}
+  m_LocalPosition: {x: 13.8, y: 0, z: 9}
   m_LocalScale: {x: 0.61993, y: 0.61993, z: 0.61993}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -809,16 +809,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &3740416917323927178
-BoxCollider:
+--- !u!64 &1893585959944042841
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8213143330407798015}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.7, y: 1, z: 2.98}
-  m_Center: {x: 0, y: 0.5, z: 0.23}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300016, guid: d1cd57c78c4fd374898396cfd01e9236, type: 3}
