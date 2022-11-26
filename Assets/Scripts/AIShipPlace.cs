@@ -6,7 +6,7 @@ using static UnityEditor.PlayerSettings;
 
 public class AIShipPlace : MonoBehaviour
 {
-    bool[,] boardObj = new bool[20, 10];
+    public bool[,] boardObj = new bool[20, 10];
     public GameObject[] aiShips;
     public GameObject boardPrefab;
     struct ships
@@ -119,7 +119,7 @@ public class AIShipPlace : MonoBehaviour
 
     void aiShipPlace(int curShip, int orientation)
     {
-        int acom = 0;
+        float acom = 0;
         float x = botShip[curShip].getCoord().x;
         float z = botShip[curShip].getCoord().z;
         GameObject shipPlacement = botShip[curShip].getShipObj();
@@ -132,6 +132,8 @@ public class AIShipPlace : MonoBehaviour
 
         if (curShip == 4)
             acom = 1;
+        else if (curShip == 3)
+            acom = .6f;
         else
             acom = 0;
         switch(orientation)

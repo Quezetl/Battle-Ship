@@ -611,9 +611,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 512572275}
-  - component: {fileID: 512572276}
   - component: {fileID: 512572278}
   - component: {fileID: 512572277}
+  - component: {fileID: 512572279}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -636,35 +636,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &512572276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 512572274}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 577e7ffe29799b24185751e82e848b82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
-    m_Bits: 64
-  shipArray:
-  - {fileID: 8213143330407798015, guid: 29119aa8f65f75943bc2b48599b896d2, type: 3}
-  - {fileID: 8892331068105481478, guid: aff5c0159049ac049baf37f98332490e, type: 3}
-  - {fileID: 4520954666514174190, guid: 89d29f321bc98924a939b8c4d5b1f6ac, type: 3}
-  - {fileID: 8523233589643833619, guid: 42ab0ac0166479c458bf1e1d8adea5c0, type: 3}
-  - {fileID: 6177491664635463701, guid: 06513f428bf1414448b77ce57ed263fa, type: 3}
-  ShipPreview: {fileID: 3769764609673513693, guid: a1a9bedb4c2eeaa48aa2aa61e0c3c681, type: 3}
-  previewable: 0000000000
-  ShipButtons:
-  - {fileID: 559073529}
-  - {fileID: 1889862661}
-  - {fileID: 1515014487}
-  - {fileID: 1655584671}
-  - {fileID: 1110514964}
 --- !u!114 &512572277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,6 +677,30 @@ MonoBehaviour:
   - {fileID: 6177491664635463701, guid: 06513f428bf1414448b77ce57ed263fa, type: 3}
   shipPreviewPrefab: {fileID: 3769764609673513693, guid: a1a9bedb4c2eeaa48aa2aa61e0c3c681, type: 3}
   mouseHighlighter: {fileID: 3970447229493964215, guid: 6a078c62b0c9d114a9b045b502ed0310, type: 3}
+  layer:
+    serializedVersion: 2
+    m_Bits: 64
+  buttons:
+  - {fileID: 559073529}
+  - {fileID: 1889862661}
+  - {fileID: 1515014487}
+  - {fileID: 1655584671}
+  - {fileID: 1110514964}
+  - {fileID: 1223285194}
+  greenCarpet: {fileID: 2100000, guid: 98d06c1935df55e449d6a91ba971581e, type: 2}
+--- !u!114 &512572279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512572274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aedf2856c737b9478d0c5fb8b322789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipObjcts: {fileID: 512572274}
 --- !u!1 &559073529
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,7 +785,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 512572276}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BoardManager, Assembly-CSharp
         m_MethodName: ShipButtoncalled
         m_Mode: 3
@@ -798,6 +793,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 512572278}
+        m_TargetAssemblyTypeName: PlayerBoardSetup, Assembly-CSharp
+        m_MethodName: currentShipChange
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1063,7 +1070,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 9, y: 13, z: 3}
+  m_LocalPosition: {x: 9, y: 13, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1235,7 +1242,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 512572276}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BoardManager, Assembly-CSharp
         m_MethodName: ShipButtoncalled
         m_Mode: 3
@@ -1243,6 +1250,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 512572278}
+        m_TargetAssemblyTypeName: PlayerBoardSetup, Assembly-CSharp
+        m_MethodName: currentShipChange
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1503,9 +1522,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 512572276}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BoardManager, Assembly-CSharp
         m_MethodName: OrientaionChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 512572278}
+        m_TargetAssemblyTypeName: PlayerBoardSetup, Assembly-CSharp
+        m_MethodName: orientationChange
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1535,7 +1566,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1c40eff4fe23a0e45a93fb4fe33ba1dd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 95a64777b7ab4484cb754453a14854b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1840,7 +1871,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 512572276}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BoardManager, Assembly-CSharp
         m_MethodName: ShipButtoncalled
         m_Mode: 3
@@ -1848,6 +1879,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 512572278}
+        m_TargetAssemblyTypeName: PlayerBoardSetup, Assembly-CSharp
+        m_MethodName: currentShipChange
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1974,7 +2017,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 512572276}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BoardManager, Assembly-CSharp
         m_MethodName: ShipButtoncalled
         m_Mode: 3
@@ -1982,6 +2025,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 512572278}
+        m_TargetAssemblyTypeName: PlayerBoardSetup, Assembly-CSharp
+        m_MethodName: currentShipChange
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2243,7 +2298,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 512572276}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BoardManager, Assembly-CSharp
         m_MethodName: ShipButtoncalled
         m_Mode: 3
@@ -2251,6 +2306,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 512572278}
+        m_TargetAssemblyTypeName: PlayerBoardSetup, Assembly-CSharp
+        m_MethodName: currentShipChange
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
