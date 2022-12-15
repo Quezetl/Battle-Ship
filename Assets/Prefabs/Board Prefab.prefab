@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8004576557883874187}
   - component: {fileID: 5890592206516436138}
   - component: {fileID: 7903471548799700153}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: Top Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 832408252599197394}
   - component: {fileID: 2265131887679083790}
   - component: {fileID: 4548075273113402018}
-  m_Layer: 3
+  m_Layer: 1
   m_Name: Board Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3671066079350546672}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.5010001}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.009999998, z: 0.009999999}
   m_ConstrainProportionsScale: 0
   m_Children: []
