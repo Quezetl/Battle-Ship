@@ -7,6 +7,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class BoardInit : MonoBehaviour
 {
+    //Initialize All Prefabs
     public GameObject Water;
     public GameObject boardPrefab;
     public GameObject[] Ships;
@@ -16,19 +17,20 @@ public class BoardInit : MonoBehaviour
     public GameObject[] buttons;
     public Material greenCarpet;
 
+    //Initialize Internal Variables
     int orientation = 0;
     Vector3[] orientVec = new Vector3[5];
     int curShip = 999;
     RaycastHit mousePos;
     GameObject[] cubePreview = new GameObject[5];
     ships[] plyrShip = new ships[5];
-
-    int i = 0;
-
-    public bool[,] boardObj = new bool[20, 11];
     ships[] botShip = new ships[5];
+    
+    //Variable for Handling Whether the Board
+    // has a Ship on it
+    public bool[,] boardObj = new bool[20, 11];
 
-
+    //Custom Structure to Handle Ship Information
     public struct ships
     {
         GameObject shipObj;
@@ -51,23 +53,23 @@ public class BoardInit : MonoBehaviour
         public void init(GameObject obj, int length, string name) { shipObj = obj; shipLength = length; shipName = name; placed = false; orientation = 0; validPlacement = true; }
     }
     
-    void PlaceWater()
-    {
-        GameObject.Instantiate(Water).transform.position = new Vector3(10, 0.100000001f, 5.5f);
-    }
+    
 
-    // Start is called before the first frame update
+    // Spawn Board, Assign Ships etc.
     void Start()
     {
-        PlaceWater();
-        aiShipSync();
+        shipSync();
         boardInit();
         aiShipCheck();
-        shipSync();
     }
-    // Update is called once per frame
+
+
+    // Main Loop Handles Ship Placement for Player
     void Update()
     {
+
+        //Checks for if the Player has the mouse on the Board, and shows blue preivew if true
+        // otherwise ends update preemtively to stop erros
         bool onScreen = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out mousePos);
         for (int i = 0; i < 5; i++)
         {
@@ -83,6 +85,8 @@ public class BoardInit : MonoBehaviour
             mouseHighlighter.SetActive(false);
         }
 
+        //Condition for Checking if all ships have been placed
+        // if not then will check if place has valid placement for ship
         if (onScreen && !allPiecesPlaced())
         {
             if (!mouseOnBoard(mousePos))
@@ -101,18 +105,30 @@ public class BoardInit : MonoBehaviour
             }
 
         }
-        if (allPiecesPlaced() && i ==0)
+
+        //Checks if This script has done everything it need to
+        // after it will end itself
+        if (allPiecesPlaced())
         {
+            //Disables Highlighter in Cases Where Mouse is
+            //Still on Board
+            mouseHighlighter.SetActive(false);
+
+            //Calls GameLoop script which handles actual game
+            // and brings over 2d array of ship information
             this.GetComponent<GameLoop>().enabled = true;
             this.GetComponent<GameLoop>().setBoard(boardObj);
-            i++;
+            this.GetComponent<BoardInit>().enabled = false;
         }
 
     }
     
 
+    //Sinces up Ships with Manipulatable objects in Script
     void shipSync()
     {
+        //Assigns information of player ships
+        // to ship using custom structure
         int j = 2;
         for (int i = 0; i < 5; i++)
         {
@@ -122,6 +138,7 @@ public class BoardInit : MonoBehaviour
                 j++;
         }
 
+        //Instantiates Cube Preview
         for (int i = 0; i < 5; i++)
         {
             cubePreview[i] = GameObject.Instantiate(shipPreviewPrefab);
@@ -129,18 +146,37 @@ public class BoardInit : MonoBehaviour
             cubePreview[i].name = "ship preview";
         }
 
+        //Instantiates Blue Highlighter Ship Preview
         mouseHighlighter = GameObject.Instantiate(mouseHighlighter);
         mouseHighlighter.SetActive(false);
         for(int i= 0; i < 5; i++)
         {
             orientVec[i] = new Vector3(0.0f, 0.0f, i);
         }
+
+        //Assigns information of AI ships
+        // to ship using custom structure
+        j = 2;
+        for (int i = 0; i < 5; i++)
+        {
+            botShip[i].init(GameObject.Instantiate(Ships[i]), j, Ships[i].name);
+
+            if (i != 1)
+                j++;
+        }
     }
 
+
+    //Creates Board & Water Shader
     void boardInit()
     {
-        GameObject tmp;
+        //Spawn Water
+        GameObject.Instantiate(Water).transform.position = new Vector3(10, 0.100000001f, 5.5f);
 
+        //GameObject to handle transforms of Board OBJs
+        GameObject tmp;
+        
+        //Sets 2D Bool array to true for later use
         for (int i = 0; i < 20; i++)
         {
             for (int j = 0; j < 11; j++)
@@ -149,6 +185,7 @@ public class BoardInit : MonoBehaviour
             }
         }
 
+        //Creates Board
         for (int i = 0; i < 21; i++)
         {
             if (i < 10)
@@ -178,6 +215,8 @@ public class BoardInit : MonoBehaviour
         }
     }
 
+
+    //Checks if All Player ships have been placed
     public bool allPiecesPlaced()
     {
         for (int i = 0; i < 5; i++)
@@ -188,18 +227,30 @@ public class BoardInit : MonoBehaviour
         buttons[5].SetActive(false);
         return true;
     }
+
+
+    //Moves Blue Highlighters to mousePos
     void blueBoxPreview()
     {
         mouseHighlighter.SetActive(true);
         mouseHighlighter.transform.position = mousePos.transform.position;
     }
 
+
+    //Spawns Grey Cubes for Ship Orientation Preview
     bool shipPreview()
     {
         bool plc = true;
+
+        //Loop Detecting Ship Collision
         for (int i = 0; i < plyrShip[curShip].getLength(); i++)
         {
+            //Sets Proper Amount of Ship Preivews 
+            // for Collision Detection
             cubePreview[i].SetActive(true);
+
+            //Turns Cube Yellow on Collision & updates plc Bool
+            // otherwise turns it back grey
             if (Physics.CheckBox(cubePreview[i].transform.position, cubePreview[i].transform.localScale / 2, Quaternion.identity, layer))
             {
                 cubePreview[i].GetComponent<Renderer>().material = Resources.Load("Materials/Yellow", typeof(Material)) as Material;
@@ -209,14 +260,18 @@ public class BoardInit : MonoBehaviour
             {
                 cubePreview[i].GetComponent<Renderer>().material = Resources.Load("Materials/Grey", typeof(Material)) as Material;
             }
-
         }
+
+        //Updates Bool for if ship is Placeable
         plyrShip[curShip].updateValid(plc ? true : false);
 
+        //Spawns Correct Amount of Ship Preview Cubes
         for (int i = 0; i < plyrShip[curShip].getLength(); i++)
         {
             cubePreview[i].transform.position = mousePos.transform.position + orientVec[i];
         }
+
+        //Error Checking if Placement is on the Board
         if (!checkBounds())
         {
             for (int i = 0; i < plyrShip[curShip].getLength(); i++)
@@ -225,9 +280,12 @@ public class BoardInit : MonoBehaviour
             return false;
         }
 
+        //Returns Value
         return true;
     }
 
+
+    //Checks if Ship will Fit on Board
     bool checkBounds()
     {
         switch (orientation)
@@ -250,21 +308,22 @@ public class BoardInit : MonoBehaviour
                 break;
         }
 
+        //Returns Value
         return true;
     }
 
+
+    //Function for Placing Ship if it passes all Previous Checks
     void placeShip()
     {
-        float acom = 0;
+        //Initialize Variables for Ship Placement
+        GameObject shipPiece = GameObject.Instantiate(plyrShip[curShip].getShipObj());
+        float acom;
         float x = mousePos.transform.position.x;
         float z = mousePos.transform.position.z;
-        float y = 0;
-        GameObject shipPiece = GameObject.Instantiate(plyrShip[curShip].getShipObj());
         float zBounds = shipPiece.GetComponent<Collider>().bounds.size.z;
-        float xBounds = shipPiece.GetComponent<Collider>().bounds.size.x;
-        float yBounds = shipPiece.GetComponent<Collider>().bounds.size.y;
-        Vector3 shipBounds = new Vector3(xBounds, yBounds, zBounds);
 
+        //Set Acommadations for Certain Ships
         if (curShip == 4)
             acom = 1;
         else if (curShip == 3)
@@ -272,25 +331,7 @@ public class BoardInit : MonoBehaviour
         else
             acom = 0;
 
-        switch (curShip)
-        {
-            case 0:
-                y = 0.672f;
-                break;
-            case 1:
-                y = 0.821f;
-                break;
-            case 2:
-                y = 0.842f;
-                break;
-            case 3:
-                y = 0.5f;
-                break;
-            case 4:
-                y = 0.622f;
-                break;
-        }
-
+        //Place Ships According to Desired Orientation
         switch (orientation)
         {
             case 0:
@@ -311,26 +352,25 @@ public class BoardInit : MonoBehaviour
                 break;
         };
 
-       /* for (int i = 0; i < plyrShip[curShip].getLength(); i++)
-        {
-            GameObject shipCarpet = GameObject.Instantiate(mouseHighlighter);
-            shipCarpet.name = $"green carpet {i} for {plyrShip[curShip].getName()}";
-            shipCarpet.GetComponent<Renderer>().material = greenCarpet;
-            shipCarpet.transform.position = mousePos.transform.position + orientVec[i] + new Vector3(0, 0.6f, 0);
-            shipCarpet.layer = 3;
-
-        }*/
-
+        //Update Value of Placed Bool
         plyrShip[curShip].updatePlaced(true);
+
+        //Moves Preview Cubes so it doesn't Detect Improper Collision
         for (int i = 0; i < 5; i++)
-        {
             cubePreview[i].transform.position = new Vector3(0, 0, 0);
-        }
+
+        //Assigns Coord in Ship Struct
         plyrShip[curShip].setCoord(new Vector3(x, 0, z));
+
+        //Update 2D Board Array
         updateBoard((int)x, (int)z, orientation);
+
+        //Get Rid of Button Assigned to Ship
         buttons[curShip].SetActive(false);
     }
 
+
+    //Function to Update 2D Board array
     void updateBoard(int x, int y, int orient)
     {
         y--;
@@ -367,12 +407,9 @@ public class BoardInit : MonoBehaviour
         }
     }
 
-    bool mouseOnBoard(RaycastHit mousePos)
-    {
-        return mousePos.collider.CompareTag("Base");
-    }
 
-
+    //Change Orientation Variable if Rotation
+    // Button is Pressed
     public void orientationChange()
     {
         if (orientation > 2)
@@ -408,25 +445,9 @@ public class BoardInit : MonoBehaviour
                 break;
         }
     }
-    public void currentShipChange(int val)
-    {
-        curShip = val;
-    }
-
-    void aiShipSync()
-    {
-        int j = 2;
-        for (int i = 0; i < 5; i++)
-        {
-            botShip[i].init(GameObject.Instantiate(Ships[i]), j, Ships[i].name);
-
-            if (i != 1)
-                j++;
-
-        }
-    }
 
 
+    //Initialize 2D Board Array
     void boardFill(int x, int y, int orientation, int length)
     {
         for (int i = 0; i < length; i++)
@@ -452,78 +473,96 @@ public class BoardInit : MonoBehaviour
             }
         }
     }
+
+    
+    //Function to see Where AI Can Place
+    //Their Ships
     void aiShipCheck()
     {
+        //Initial Variables
         int orientation;
         int x;
         int y;
 
+        //Loop for All Ships
         for (int i = 0; i < 5; i++)
         {
+            //Loop to Randomize Orientation and Coordinates
             do
             {
                 orientation = (int)Random.Range(0.0f, 4.0f);
                 x = (int)Random.Range(11.0f, 20.0f);
                 y = (int)Random.Range(1.0f, 10.0f);
             } while (!validPosition(x, y, orientation, i));
+
+            //Once Valid Position found
+            //Update Ship Struct infro
             botShip[i].setCoord(new Vector3(x, 0, y));
+
+            //Update 2D Board Array
             boardFill(x, y, orientation, botShip[i].getLength());
+
+            //Place the Ship on the Board
             aiShipPlace(i, orientation);
-
         }
-
-
     }
 
+
+    //Function for Placing Ships on AI Side
     void aiShipPlace(int curShip, int orientation)
     {
-        float acom = 0;
+        //Initialize Variables for Ships
+        GameObject shipPlacement = botShip[curShip].getShipObj();
+        float acom;
         float x = botShip[curShip].getCoord().x;
         float z = botShip[curShip].getCoord().z;
-        float y = 0;
-        GameObject shipPlacement = botShip[curShip].getShipObj();
         float zBounds = shipPlacement.GetComponent<Collider>().bounds.size.z;
-        float xBounds = shipPlacement.GetComponent<Collider>().bounds.size.x;
-        float yBounds = shipPlacement.GetComponent<Collider>().bounds.size.y;
-        Vector3 shipBounds = new Vector3(xBounds, yBounds, zBounds);
 
+        //Name Ship According to Relavent Infor
         shipPlacement.name = "(" + botShip[curShip].getCoord().x.ToString() + ", " + botShip[curShip].getCoord().z.ToString() + ")" + " Length:" + botShip[curShip].getLength() + "orientation: " + orientation;
 
 
-
+        //Adjust Accomadations for Certain Ships
         if (curShip == 4)
             acom = 1;
         else if (curShip == 3)
             acom = .6f;
         else
             acom = 0;
+
+        //Place Actual Ships
         switch (orientation)
         {
             case 0:
-                shipPlacement.transform.position = new Vector3(x, y, z) + new Vector3(0f, 0f, zBounds / (3 - acom));
+                shipPlacement.transform.position = new Vector3(x, 0, z) + new Vector3(0f, 0f, zBounds / (3 - acom));
                 shipPlacement.transform.Rotate(0, -180, 0);
                 break;
             case 1:
-                shipPlacement.transform.position = new Vector3(x, y, z) + new Vector3(zBounds / (3 - acom), 0f, 0f);
+                shipPlacement.transform.position = new Vector3(x, 0, z) + new Vector3(zBounds / (3 - acom), 0f, 0f);
                 shipPlacement.transform.Rotate(0, -90, 0);
                 break;
             case 2:
-                shipPlacement.transform.position = new Vector3(x, y, z) - new Vector3(0f, 0f, zBounds / (3 - acom));
+                shipPlacement.transform.position = new Vector3(x, 0, z) - new Vector3(0f, 0f, zBounds / (3 - acom));
                 shipPlacement.transform.Rotate(0, 0, 0);
                 break;
             case 3:
-                shipPlacement.transform.position = new Vector3(x, y, z) - new Vector3(zBounds / (3 - acom), 0f, 0f);
+                shipPlacement.transform.position = new Vector3(x, 0, z) - new Vector3(zBounds / (3 - acom), 0f, 0f);
                 shipPlacement.transform.Rotate(0, -270, 0);
                 break;
         };
-        // UNCOMMENT LATER
-        //shipPlacement.setActive(False);
-        shipPlacement.GetComponent<MeshCollider>().enabled = false;
+
+        //Consoling out Ship Info for Error Testing
+        Debug.Log(shipPlacement.name);
+
+        //Destroy AI Ship to Free up Resources
+        Destroy(shipPlacement);
     }
 
+
+    //Checks if Passed Ship is in Valid Placement
     bool validPosition(int x, int y, int orient, int curBoat)
     {
-        float bounds = botShip[curBoat].getLength();
+        //Checks if Ship will Fit on Board
         switch (orient)
         {
             case 0:
@@ -543,10 +582,13 @@ public class BoardInit : MonoBehaviour
                     return false;
                 break;
         }
-
+        
+        //Checks if a Ship is Selected
         if (curBoat == 0)
             return true;
 
+        //Checks if Ship is Valid 
+        //According to 2D Board Array
         for (int i = 0; i < botShip[curBoat].getLength(); i++)
         {
             switch (orient)
@@ -573,10 +615,18 @@ public class BoardInit : MonoBehaviour
                     break;
             }
         }
+
+        //Returns Value
         return true;
     }
 
 
+    //Helper Function Used for Changing Ship Selection According to UI
+    public void currentShipChange(int val) { curShip = val; }
+
+
+    //Helper Function for Checking if Mouse is on Player Board
+    bool mouseOnBoard(RaycastHit mousePos) { return mousePos.collider.CompareTag("Base"); }
 
 
 

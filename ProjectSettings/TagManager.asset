@@ -17,8 +17,8 @@ TagManager:
   - UI
   - ships
   - aiship
-  - 
-  - 
+  - Visual Effects
+  - Text
   - 
   - 
   - 
@@ -44,4 +44,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: New Layer 1
+    uniqueID: 1591278591
     locked: 0
